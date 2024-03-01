@@ -1,0 +1,15 @@
+.container-fluid.px-0 {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  
+
+.card {
+    width: 100%;
+  }
+  
+  .card-img-top {
+    width: 100%;
+    height: auto;
+  }
+  
