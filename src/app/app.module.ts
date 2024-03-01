@@ -10,12 +10,22 @@ import { DarkModeToggleComponent } from './dark-mode-toggle/dark-mode-toggle.com
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ThemeService } from './theme.service';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { HeaderComponent } from './header/header.component';
+import { SearchComponent } from './search/search.component';
+import { TimelineComponent } from './timeline/timeline.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    DarkModeToggleComponent
+    DarkModeToggleComponent,
+    HeaderComponent,
+    SearchComponent,
+    TimelineComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
