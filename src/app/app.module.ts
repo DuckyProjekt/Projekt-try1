@@ -15,6 +15,7 @@ import { SearchComponent } from './search/search.component';
 import { TimelineComponent } from './timeline/timeline.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { RegisterComponent } from './register/register.component';
     HttpClientModule,
     NgbModule,
     BrowserAnimationsModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    FormsModule
   ],
   providers: [ThemeService],
   bootstrap: [AppComponent]
