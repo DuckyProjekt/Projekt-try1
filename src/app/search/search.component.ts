@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseService } from '../base.service';
 import { ThemeService } from '../theme.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-search',
@@ -13,8 +15,10 @@ export class SearchComponent implements OnInit {
 
   constructor(
     private baseService: BaseService,
-    public themeService: ThemeService
+    public themeService: ThemeService,
+    private router: Router // Inject the Router service
   ) {}
+  
 
   ngOnInit() {
     // Subscribe to changes in the movies array
@@ -26,6 +30,8 @@ export class SearchComponent implements OnInit {
   search() {
     if (this.searchTerm.trim() !== '') {
       this.baseService.searchMovies(this.searchTerm);
+      this.router.navigate(['/']); // Navigate to the root route
     }
   }
-}
+ }
+
