@@ -9,6 +9,7 @@ import { BaseService } from '../base.service';
 export class MainComponent {
 
   movies: any;
+  searchQuery: string = '';
 
   constructor(private base: BaseService) {
     this.base.warmovies.subscribe(
@@ -17,20 +18,13 @@ export class MainComponent {
   }
 
   ngOnInit() {
-    const moviesJson = '{{movies|json}}';
-    this.movies = JSON.parse(moviesJson);
   }
 
   getKeys(obj: any): string[] {
     return Object.keys(obj);
   }
-}
 
-// genre_ids
-// id
-// original_language
-// original_title
-// overview
-// poster_path
-// release_date
-// title
+  searchMovies() {
+    this.base.searchMovies(this.searchQuery);
+  }
+}

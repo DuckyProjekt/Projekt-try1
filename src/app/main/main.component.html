@@ -1,20 +1,23 @@
 <div class="container">
-    <div class="container-fluid px-0">
-        <div class="row">
-          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-4" *ngFor="let movie of movies">
-            <div class="card h-100">
-              <img *ngIf="movie.poster_path" [src]="'https://media.themoviedb.org/t/p/w300_and_h450_bestv2' + movie.poster_path" class="card-img-top" alt="Movie Poster">
-              <div class="card-body">
-                <h2 class="card-title">{{ movie.title }}</h2>
-                <p class="card-text">{{ movie.overview }}</p>
-                <p class="card-text"><strong>Original Title:</strong> {{ movie.original_title }}</p>
-                <p class="card-text"><strong>Original Language:</strong> {{ movie.original_language }}</p>
-                <p class="card-text"><small><strong>Release Date:</strong> {{ movie.release_date }}</small></p>
-              </div>
+  <div class="search-container">
+    <input type="text" [(ngModel)]="searchQuery" placeholder="Filmek keresése..." (keyup.enter)="searchMovies()">
+    <button (click)="searchMovies()">Keresés</button>
+
+  </div>
+  <div class="container-fluid px-0">
+      <div class="row">
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-4" *ngFor="let movie of movies">
+          <div class="card h-100">
+            <img *ngIf="movie.poster_path" [src]="'https://media.themoviedb.org/t/p/w300_and_h450_bestv2' + movie.poster_path" class="card-img-top" alt="Movie Poster">
+            <div class="card-body">
+              <h2 class="card-title">{{ movie.title }}</h2>
+              <p class="card-text">{{ movie.overview }}</p>
+              <p class="card-text"><strong>Original Title:</strong> {{ movie.original_title }}</p>
+              <p class="card-text"><strong>Original Language:</strong> {{ movie.original_language }}</p>
+              <p class="card-text"><small><strong>Release Date:</strong> {{ movie.release_date }}</small></p>
             </div>
           </div>
         </div>
-    </div>
+      </div>
+  </div>
 </div>
-
-  
