@@ -14,6 +14,9 @@ namespace JWTTokenAPI.Data
             : base(options)
         {
         }
+        public DbSet<JWTTokenAPI.Models.LikedMovieIds>? LikedMovieIds { get; set; }
+        public DbSet<JWTTokenAPI.Models.Favourites>? Favourites { get; set; }
+        public DbSet<JWTTokenAPI.Models.Ratings>? Ratings { get; set; }
 
         //public DbSet<JWTTokenAPI.Models.Company> Company { get; set; } = default!;
     }
