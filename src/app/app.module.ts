@@ -6,9 +6,7 @@ import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { DarkModeToggleComponent } from './dark-mode-toggle/dark-mode-toggle.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ThemeService } from './theme.service';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { HeaderComponent } from './header/header.component';
 import { SearchComponent } from './search/search.component';
@@ -21,7 +19,6 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     AppComponent,
     MainComponent,
-    DarkModeToggleComponent,
     HeaderComponent,
     SearchComponent,
     TimelineComponent,
@@ -37,7 +34,7 @@ import { FormsModule } from '@angular/forms';
     MatSlideToggleModule,
     FormsModule
   ],
-  providers: [ThemeService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
