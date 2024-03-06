@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using JWTTokenAPI.Models;
 using JWTTokenAPI.Services;
@@ -58,7 +58,7 @@ namespace JWTTokenAPI.Controllers
 
         [HttpDelete]
         [Route("{id}")]
-        [Authorize(Roles = "SAdmin")]
+        //[Authorize(Roles = "SAdmin")]
         public async Task<IActionResult> DeleteUser(string id)
         {
             var currentUserName = HttpContext.User.Identity.Name;
@@ -71,7 +71,7 @@ namespace JWTTokenAPI.Controllers
                  await _authService.DeleteUser(id);
                 if (status == 0)
                 {
-                    return BadRequest(message);
+                    return BadRequest("jól fos");
                 }
                 return Ok(message);
             }

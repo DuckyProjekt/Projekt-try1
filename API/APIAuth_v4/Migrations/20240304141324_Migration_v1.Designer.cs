@@ -4,6 +4,7 @@ using JWTTokenAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,13 +12,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JWTTokenAPI.Migrations
 {
     [DbContext(typeof(JWTTokenAPIContext))]
-    partial class JWTTokenAPIContextModelSnapshot : ModelSnapshot
+    [Migration("20240304141324_Migration_v1")]
+    partial class Migration_v1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.27")
+                .HasAnnotation("ProductVersion", "6.0.23")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -93,77 +95,6 @@ namespace JWTTokenAPI.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-                });
-
-            modelBuilder.Entity("JWTTokenAPI.Models.Favourites", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("LikedMovieIdId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("MovieId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("LikedMovieIdId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Favourites");
-                });
-
-            modelBuilder.Entity("JWTTokenAPI.Models.LikedMovieIds", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("MovieId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("LikedMovieIds");
-                });
-
-            modelBuilder.Entity("JWTTokenAPI.Models.Ratings", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("LikedMovieIdId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("MovieId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Rating")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.HasIndex("LikedMovieIdId");
-
-                    b.ToTable("Ratings");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -299,40 +230,6 @@ namespace JWTTokenAPI.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("JWTTokenAPI.Models.Favourites", b =>
-                {
-                    b.HasOne("JWTTokenAPI.Models.LikedMovieIds", "LikedMovieId")
-                        .WithMany("Favourites")
-                        .HasForeignKey("LikedMovieIdId");
-
-                    b.HasOne("JWTTokenAPI.Models.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("LikedMovieId");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("JWTTokenAPI.Models.Ratings", b =>
-                {
-                    b.HasOne("JWTTokenAPI.Models.ApplicationUser", "ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("ApplicationUserId");
-
-                    b.HasOne("JWTTokenAPI.Models.LikedMovieIds", "LikedMovieId")
-                        .WithMany("Ratings")
-                        .HasForeignKey("LikedMovieIdId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ApplicationUser");
-
-                    b.Navigation("LikedMovieId");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -382,13 +279,6 @@ namespace JWTTokenAPI.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("JWTTokenAPI.Models.LikedMovieIds", b =>
-                {
-                    b.Navigation("Favourites");
-
-                    b.Navigation("Ratings");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using JWTTokenAPI.Models;
 using JWTTokenAPI.Services;
@@ -9,9 +9,9 @@ using Microsoft.AspNetCore.Identity;
 namespace JWTTokenAPI.Controllers
 { 
     [Route("api/userClaims")]
-   [ApiController]
+    [ApiController]
     //[Authorize(Roles = "SAdmin")]
-    [Authorize]
+    //[Authorize]
     public class UserClaimsController : ControllerBase
     {
         private readonly IAuthService _authService;
