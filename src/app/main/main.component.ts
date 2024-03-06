@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { BaseService } from '../base.service';
-import { ThemeService } from '../theme.service';
 
 @Component({
   selector: 'app-main',
@@ -11,7 +10,7 @@ export class MainComponent {
 
   movies: any;
 
-  constructor(private base: BaseService, public themeService: ThemeService) {
+  constructor(private base: BaseService) {
     this.base.warmovies.subscribe(
       (res: any) => this.movies = res.results
     );

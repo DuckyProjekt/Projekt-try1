@@ -1,9 +1,9 @@
 <div class="login-container">
     <h2>Belépés</h2>
     <form action="login.php" method="post">
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <input type="submit" value="Login">
+        <input type="text" name="username" placeholder="Felhasználónév" required>
+        <input type="password" name="password" placeholder="Jelszó" required>
+        <input type="submit" value="Belépés">
     </form>
     <div class="register">
     <br>
@@ -11,7 +11,7 @@
     <br>
     <p>Még nem regisztráltál?</p>
     <a class="nav-link" routerLink="/register">
-        <button class="btn" [ngClass]="{ 'btn-light': !themeService.darkMode, 'btn-dark': themeService.darkMode }">Regisztráció</button>
+        <button class="btn btn-light">Regisztráció</button>
     </a>
     </div>
 </div>

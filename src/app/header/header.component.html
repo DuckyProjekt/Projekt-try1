@@ -1,27 +1,26 @@
-<nav class="navbar navbar-expand-lg" [ngClass]="{ 'navbar-light bg-light': !themeService.darkMode, 'navbar-dark bg-dark': themeService.darkMode }">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" routerLink="/">
-      <button class="btn" [ngClass]="{ 'btn-light': !themeService.darkMode, 'btn-dark': themeService.darkMode }">MovieDB</button>
+      <button class="btn btn-light">Főoldal</button>
     </a>
   
     <div class="navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link" routerLink="/search">
-            <button class="btn" [ngClass]="{ 'btn-light': !themeService.darkMode, 'btn-dark': themeService.darkMode }">Keresés</button>
+            <button class="btn btn-light">Keresés</button>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/timeline">
-            <button class="btn" [ngClass]="{ 'btn-light': !themeService.darkMode, 'btn-dark': themeService.darkMode }">Idővonal</button>
+            <button class="btn btn-light">Idővonal</button>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/login">
-            <button class="btn" [ngClass]="{ 'btn-light': !themeService.darkMode, 'btn-dark': themeService.darkMode }">Belépés</button>
+            <button class="btn btn-light">Belépés</button>
           </a>
         </li>
       </ul>
-      <div class="dark-mode-toggle"><app-dark-mode-toggle></app-dark-mode-toggle></div>
     </div>
   </nav>
   
