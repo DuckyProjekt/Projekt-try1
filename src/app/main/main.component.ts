@@ -1,23 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { BaseService } from '../base.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
-export class MainComponent {
-
+export class MainComponent implements OnDestroy {
+  trendingUrl: string = 'https://api.themoviedb.org/3/trending/movie/week?language=en-US';
   movies: any;
   searchQuery: string = '';
+  currentPage: number = 1;
+  searchSubscription!: Subscription;
+
+  @ViewChild('topOfPage') topOfPage!: ElementRef;
 
   constructor(private base: BaseService) {
-    this.base.warmovies.subscribe(
-      (res: any) => this.movies = res.results
-    );
+    this.getTrendingMovies();
   }
 
-  ngOnInit() {
+  ngOnDestroy() {
+    if (this.searchSubscription) {
+      this.searchSubscription.unsubscribe();
+    }
   }
 
   getKeys(obj: any): string[] {
@@ -25,6 +31,37 @@ export class MainComponent {
   }
 
   searchMovies() {
-    this.base.searchMovies(this.searchQuery);
+    if (this.searchSubscription) {
+      this.searchSubscription.unsubscribe();
+    }
+    this.searchSubscription = this.base.searchMovies(this.searchQuery, this.currentPage).subscribe(
+      (res: any) => {
+        this.movies = res.results;
+      }
+    );
+  }
+
+  nextPage() {
+    this.currentPage++;
+    this.searchMovies();
+  }
+
+  previousPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.searchMovies();
+    }
+  }
+
+  showUp() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  getTrendingMovies() {
+    this.base.getTrendingMovies().subscribe(
+      (res: any) => {
+        this.movies = res.results;
+      }
+    );
   }
 }

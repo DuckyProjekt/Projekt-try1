@@ -9,7 +9,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { HeaderComponent } from './header/header.component';
-import { SearchComponent } from './search/search.component';
 import { TimelineComponent } from './timeline/timeline.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -20,7 +19,6 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     MainComponent,
     HeaderComponent,
-    SearchComponent,
     TimelineComponent,
     LoginComponent,
     RegisterComponent
