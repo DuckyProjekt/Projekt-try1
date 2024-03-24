@@ -13,13 +13,16 @@ export class BaseService {
     }
   }
 
-  baseUrl = "https://api.themoviedb.org/3/search/movie";
-  trendingUrl = 'https://api.themoviedb.org/3/trending/movie/week?language=en-US';
+  baseUrl = "https://api.themoviedb.org/3/search/multi";
+  trendingUrl = 'https://api.themoviedb.org/3/trending/all/week?language=hu-HU';
 
   constructor(private http: HttpClient) { }
 
   searchMovies(query: string, page: number) {
-    const url = `${this.baseUrl}?query=${query}&include_adult=false&language=en-US&page=${page}`;
+    var url = `${this.baseUrl}?query=${query}&include_adult=false&language=hu-HU&page=${page}`;
+    if (query=='') {
+      url=this.trendingUrl
+    }
     return this.http.get(url, this.options);
   }
 
