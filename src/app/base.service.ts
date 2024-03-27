@@ -14,7 +14,10 @@ export class BaseService {
   }
 
   baseUrl = "https://api.themoviedb.org/3/search/multi";
-  trendingUrl = 'https://api.themoviedb.org/3/trending/all/week?language=hu-HU';
+  trendingUrl = 'https://api.themoviedb.org/3/trending/all/day?language=hu-HU';
+  tvGenresUrl = 'https://api.themoviedb.org/3/genre/tv/list?language=hu';
+  movieGenresUrl = 'https://api.themoviedb.org/3/genre/movie/list?language=hu';
+  languagesUrl = 'https://api.themoviedb.org/3/configuration/languages';
 
   constructor(private http: HttpClient) { }
 
@@ -28,5 +31,16 @@ export class BaseService {
 
   getTrendingMovies() {
     return this.http.get(this.trendingUrl, this.options);
+  }
+
+  getTvGenres() {
+    return this.http.get(this.tvGenresUrl, this.options);
+  }
+  getMovieGenres() {
+    return this.http.get(this.movieGenresUrl, this.options);
+  }
+
+  getLanguages() {
+    return this.http.get(this.languagesUrl, this.options);
   }
 }

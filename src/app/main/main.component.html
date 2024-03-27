@@ -1,3 +1,4 @@
+<!-- {{movies|json}} -->
 <div class="container">
   <div class="search-container">
     <input type="text" [(ngModel)]="searchQuery" placeholder="Keresés..." (keyup.enter)="searchButton()">
@@ -24,6 +25,7 @@
                     <div class="card-body">
             <h2 class="card-title">{{ movie.name ? movie.name : movie.title }}</h2>
             <div *ngIf="movie.known_for && movie.known_for.length > 0">
+              <p><i>Színész</i></p>
               <p>Szerepel itt:</p>
               <ul>
                 <li *ngFor="let item of movie.known_for">
@@ -34,9 +36,25 @@
             
             <ng-container *ngIf="movie.media_type !== 'person'">
               <p class="card-text">{{ movie.overview }}</p>
+              <p class="card-text"><strong>Műfaj:</strong>
+                <span *ngIf="movie.genre_ids && movie.genre_ids.length > 0">
+                  <ng-container *ngFor="let genreId of movie.genre_ids; let i = index">
+                    {{ getGenreName(genreId) }}
+                    <span *ngIf="i !== movie.genre_ids.length - 1">,</span>
+                  </ng-container>
+                </span>
+              </p>
               <p class="card-text"><strong>Eredeti cím:</strong> {{ movie.original_title ? movie.original_title : movie.original_name }}</p>
-              <p class="card-text"><strong>Eredeti nyelv:</strong> {{ movie.original_language }}</p>
-              <p class="card-text"><small><strong>Megjelenés:</strong> {{ movie.release_date ? movie.release_date : movie.first_air_date }}</small></p>
+              <p class="card-text"><strong>Eredeti nyelv:</strong> {{ getLanguageName(movie.original_language) }}</p>
+              <p class="card-text"><strong>Megjelenés:</strong> {{ movie.release_date ? movie.release_date : movie.first_air_date }}</p>
+            </ng-container>
+
+            <ng-container *ngIf="movie.media_type == 'tv'">
+              <p class="card-text"><strong>Típus:</strong> sorozat</p>
+            </ng-container>
+            
+            <ng-container *ngIf="movie.media_type == 'movie'">
+              <p class="card-text"><strong>Típus:</strong> film</p>
             </ng-container>
           </div>
         </div>
