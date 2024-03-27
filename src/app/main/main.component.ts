@@ -1,6 +1,6 @@
 import { Component, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { BaseService } from '../base.service';
-import { Subject, Subscription, take } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-main',
@@ -14,6 +14,7 @@ export class MainComponent implements OnDestroy {
   searchSubscription!: Subscription;
   allGenres: any[] = [];
   languages: any[] = [];
+  showPagination = false;
 
   @ViewChild('topOfPage') topOfPage!: ElementRef;
 
@@ -47,6 +48,14 @@ export class MainComponent implements OnDestroy {
     return Object.keys(obj);
   }
 
+  checkLastPage() {
+      if (this.currentPage === 1) {
+        return false;
+      }else {
+        return true;
+      }
+  }
+
   searchButton() {
     if (this.searchSubscription) {
       this.searchSubscription.unsubscribe();
@@ -57,6 +66,8 @@ export class MainComponent implements OnDestroy {
         this.movies = res.results;
       }
     );
+    this.showPagination = true;
+    this.checkLastPage();
   }
   pageTurn() {
     this.scrollToTop();
@@ -68,7 +79,8 @@ export class MainComponent implements OnDestroy {
         this.movies = res.results;
       }
     );
-  }
+    this.checkLastPage();
+}
 
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
